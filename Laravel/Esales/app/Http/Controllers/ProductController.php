@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Product;
+
 
 class ProductController extends Controller
 {
@@ -14,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view('products.index');
+        return view('products.index')->with('products',Product::all());
     }
 
     /**
@@ -24,7 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.create')->with('categories',Category::all())->with('brands',Brand::all());
     }
 
     /**
@@ -35,7 +39,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('products.store');
     }
 
     /**

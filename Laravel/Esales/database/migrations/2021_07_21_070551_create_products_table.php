@@ -20,10 +20,10 @@ class CreateProductsTable extends Migration
             $table->string('product_description');
             $table->decimal('product_image');
             $table->boolean('availability')->default(1);
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->integer('brand_id')->unsigned();
-            $table->foreign('brand_id')->references('id')->on('brands');
+            // $table->bigInteger('category_id')->unsigned();
+            // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            // $table->bigInteger('brand_id')->unsigned();
+            // $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
