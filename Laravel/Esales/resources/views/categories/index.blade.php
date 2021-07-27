@@ -4,28 +4,42 @@
 <div class="d-flex justify-content-end mb-2">
     <a href="{{ route('categories.create') }}" class="btn btn-success float-right">Add Category</a>
 </div>
-<div class="cart card-default">
+<div class="card card-default">
     <div class="card-header">Categories</div>
     <div class="card-body">
-    @if ($categories->count()>0)
-           <table class="table">
+        @if ($categories->count()>0)
+
+           <table class="table table-bordered table-striped text-center">
             <thead>
                 <th>Name</th>
-                <th>Posts Count</th>
-                <th></th>
+                <th>Products Count</th>
+                <th>Action</th>
                 <tbody>
                     @foreach ($categories as $category )
                     <tr>
                        
                         <td>
-                            {{ $category->name }}
+                            {{ $category->category_name }}
                         </td>
                          <td>
-                          {{ $category->posts->count() }}
+                          {{ $category->products->count() }}
                         </td>
                         <td>
-                            <a href="{{ route('categories.edit',$category->id) }}" class="btn btn-info btn-sm">Edit</a>
-                            <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete</button>
+                              <div class='btn-group'>
+                                <a href="{{ route('categories.edit',$category->id) }}" class='btn btn-warning btn-sm'>
+                                    <i class="fas fa-edit">Edit</i>
+                                </a>
+                              </div>
+                              <div class="btn-group"  >
+                                {{-- <a href="{{ route('categories.destroy',$category->id) }}" class='btn btn-danger btn-sm'> --}}
+                                  
+                                {{ Form::open(array('url' => 'categories/' . $category->id, 'class' => 'pull-right')) }}
+                                {{ Form::hidden('_method', 'DELETE') }} 
+                                {{ Form::button('<i class="fa fa-trash">Delete</i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm'] )  }}
+                                {{ Form::close() }}  
+                                {{-- </a> --}}
+                             </div> 
+                            
                         </td>
                     </tr>
                         
@@ -59,7 +73,6 @@
      <h3 class="text-center">No categories yet</h3>
        
 @endif
-
 
 
     </div>

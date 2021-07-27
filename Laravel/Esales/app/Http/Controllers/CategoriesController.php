@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Categories\CreateCategoryRequest;
+use App\Http\Requests\Categories\UpdateCategoriesRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
 
 class CategoriesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +32,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -34,9 +41,15 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        //
+        Category::create([
+            'category_name' => $request->category_name
+        ]);
+
+        session()->flash('success','category created successfully.');
+
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -56,9 +69,9 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.create')->with('category',$category);
     }
 
     /**
@@ -68,9 +81,13 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoriesRequest $request, Category $category)
     {
-        //
+        $category->update([
+            'category_name'=>$request->category_name
+        ]);
+        session()->flash('success','Category updated successfully.');
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -79,8 +96,17 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        if($category->products->count()>0)
+        {
+            session()->flash('error','Category cannot be deleted It has some Products');
+            return redirect()->back();
+        }
+        $category->delete();
+
+        session()->flash('success','Category deleted successfully');
+
+        return redirect(route('categories.index'));
     }
 }

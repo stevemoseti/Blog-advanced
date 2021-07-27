@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <span class="fas fa-reload"></span>
                         <div>
-                            <h5>Pending</h5>
+                            <h5>Pending Payments</h5>
                             <h4>kes. 300000</h4>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <span class="fas fa-check-box"></span>
                         <div>
-                            <h5>Processed</h5>
+                            <h5>Processed Payments</h5>
                             <h4>kes. 300000</h4>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                 <section class="recent">
                     <div class="activity-grid">
                     <div class="activity-card">
-                        <h3>Recent activity</h3>
+                        <h3>Recent Orders</h3>
                         <table>
                             <thead>
                                 <tr>
@@ -185,7 +185,7 @@
                             </div>
                             </div>
                             <div class="text-center">
-                                    <button>
+                                    <button class="bdaybutton">
                                         <span class="fas fa-gift"></span>
                                         Wish Him
                                     </button>
