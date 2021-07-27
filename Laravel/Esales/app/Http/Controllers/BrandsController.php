@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Brands\CreateBrandRequest;
+use App\Http\Requests\Brands\UpdateBrandsRequest;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BrandsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        return view('brands.index');
+        return view('brands.index')->with('brands',Brand::all())->with('products',Product::all());
     }
 
     /**
@@ -23,7 +32,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        //
+        return view('brands.create');
     }
 
     /**
@@ -32,9 +41,15 @@ class BrandsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateBrandRequest $request)
     {
-        //
+        Brand::create([
+            'brand_name' => $request->brand_name
+        ]);
+
+        session()->flash('success','    Brand created successfully.');
+
+        return redirect(route('brands.index'));
     }
 
     /**
@@ -54,9 +69,9 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Brand $brand)
     {
-        //
+        return view('brands.create')->with('brand',$brand);
     }
 
     /**
@@ -66,9 +81,13 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBrandsRequest $request,Brand $brand)
     {
-        //
+         $brand->update([
+            'brand_name'=>$request->brand_name
+        ]);
+        session()->flash('success','Brand updated successfully.');
+        return redirect(route('brands.index'));
     }
 
     /**
@@ -77,8 +96,21 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Brand $brand)
     {
-        //
+       if($brand->products->count()>0)
+        {
+            session()->flash('error','Brand cannot be deleted It has some Products');
+            return redirect()->back();
+        }
+        $brand->delete();
+
+        session()->flash('success','Brand deleted successfully');
+
+        return redirect(route('brands.index'));
+
+        
+       
     }
+    
 }

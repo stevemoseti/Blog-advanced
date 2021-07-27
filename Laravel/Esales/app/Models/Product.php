@@ -13,7 +13,9 @@ class Product extends Model
         'product_price',
         'product_description',
         'product_image',
-        'availability'
+        'product_quantity',
+        'category_id',
+        'brand_id',
     ];
     // the products model belong to category model
    public function category()
