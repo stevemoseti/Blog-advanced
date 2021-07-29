@@ -27,6 +27,12 @@ Route::resource('categories', App\Http\Controllers\categoriesController::class);
 Route::resource('brands', App\Http\Controllers\BrandsController::class);
 Route::resource('products', App\Http\Controllers\ProductController::class);
 
+Route::middleware(['auth','admin'])->group(function(){
+Route::get('users','App\Http\Controllers\UsersController@index')->name('users.index'); 
+Route::post('users/{user}/make-admin','App\Http\Controllers\UsersController@makeAdmin')->name('users.make-admin');
+Route::get('users/profile', 'App\Http\Controllers\UsersController@edit')->name('users.edit-profile');
+Route::put('users/profile','App\Http\Controllers\UsersController@update')->name('users.update-profile');
+});
 
 
 

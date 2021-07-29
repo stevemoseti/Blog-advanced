@@ -1,1 +1,5 @@
-<a class="btn btn-xs btn-round btn-success" href="{{route('login')}}">Login</a>
+@extends('layouts.homepage')
+
+@section('content')
+products will feature here
+@endsection

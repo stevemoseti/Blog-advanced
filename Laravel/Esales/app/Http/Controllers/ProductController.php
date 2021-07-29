@@ -26,6 +26,7 @@ class ProductController extends Controller
     {
         //
         return view('products.index')->with('products',Product::all());
+       
     }
 
     /**
@@ -47,6 +48,7 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
+        
         // upload image to storage folder
          $product_image = $request->product_image->store('products','public');
         //  create the product

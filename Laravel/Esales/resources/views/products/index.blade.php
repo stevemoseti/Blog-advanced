@@ -9,7 +9,7 @@
     <div class="card-body">
        
         @if ($products->count()>0)
-        <table class="table table-bordered table-striped text-center">
+        <table class="table table-bordered table-striped text-center flex">
             <thead>
                 <tr>
                 <th>Title</th>
@@ -30,7 +30,8 @@
                     </td>
                     <td>
                         
-                    <img src="{{ asset('storage/'.$product->product_image) }}"  width="20px" height="20px" alt="">
+                    {{-- <img src="{{ asset('/storage/app/public/'.$product->product_image) }}"  width="50px" height="50px" alt=""> --}}
+                    <img  src="{{ URL::asset('storage/app/public/'.$product->product_image) }}" alt="" width="50px" height="50px">
                     </td>
                     <td>
                     {{ $product->product_price}}  
@@ -54,20 +55,20 @@
                     </td>
                 
                     <td>
-                    <form action="{{ route('products.destroy',$product->id) }}" method="GET">
+                    <form action="{{ route('products.destroy',$product->id) }}" method="POST">
 
                         <a href="{{ route('products.show',$product->id) }}" title="show">
-                            <i class="fas fa-eye btn-info btn btn-sm ">view</i>
+                            <i class="fas fa-eye btn-info  btn-sm ">view</i>
                         </a>
 
                         <a href="{{ route('products.edit',$product->id) }}">
-                            <i class="fas fa-edit  btn-warning btn btn-sm">Edit</i>
+                            <i class="fas fa-edit  btn-warning  btn-sm">Edit</i>
                         </a>
 
                         @csrf
                         @method('DELETE')
                         <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                         <i class="fas fa-trash  btn-danger btn btn-sm">Delete</i>
+                         <i class="fas fa-trash  btn-danger  btn-sm">Delete</i>
                         </button>
                     </form>
                     </td>
