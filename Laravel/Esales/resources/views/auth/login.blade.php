@@ -1,5 +1,4 @@
 @extends('layouts.log')
-
 @section('content')
                     <div class="row mx-5">
 						<h2>Log In</h2>
@@ -9,7 +8,6 @@
 						<form method="POST" action="{{ route('login') }}" class="form-group">
                         @csrf
 							<div class="row">
-                                {{-- <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus> --}}
 								<input type="email" name="email" id="email" class="form__input form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
                                  @error('email')
                                     <span class="invalid-feedback" role="alert">

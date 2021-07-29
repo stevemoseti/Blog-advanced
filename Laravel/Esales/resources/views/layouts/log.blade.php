@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-	<title>Login Page</title>
+	<title> {{ config('app.name', 'Esales')  }}</title>
     <style>
         .main-content{
 	width: 50%;
@@ -24,9 +24,7 @@
 	justify-content: center;
 	color: #fff;
 }
-.fa-cart-arrow-down{
-	font-size:3em;
-}
+
 @media screen and (max-width: 640px) {
 	.main-content{width: 90%;}
 	.company__info{
@@ -62,7 +60,8 @@ form{
 	padding: 1em .5em .5em;
 	padding-left: 2em;
 	outline:none;
-	margin:0.5em auto;
+	/* margin:0.5em auto; */
+	margin-top: 0.5rem;
 	transition: all .5s ease;
 }
 .form__input:focus{
@@ -93,8 +92,11 @@ form{
 	<div class="container-fluid text-center">
 		<div class="row main-content bg-success text-center">
 			<div class="col-md-4 text-center company__info">
-				<span class="company__logo"><h2><span class="fas fa-cart-arrow-down"></span></h2></span>
-				<h4 class="company_title">Esales</h4>
+				<span class="company__logo">
+					<span class="">
+						<img src="{{asset('img/esales.png')}}" alt="" width="100%" height="100%">
+					</span >
+				</span>
 			</div>
 			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
 				<div class="container-fluid">

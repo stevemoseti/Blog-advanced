@@ -16,9 +16,9 @@
     <!-- Styles -->
    
 
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="{{asset('css/app.css')}}">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"/>
    <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <!-- jQuery library -->
@@ -41,9 +41,14 @@
         <div class="sidebar-header">
             <h3 class="brand">
                 <span class="ti-unlink"></span>
-                <span>E-sales</span>
+                <span>
+                    <img src="{{asset('img/esales.png')}}" alt="" width="100%" height="100%">
+                </span>
             </h3>
-            <label for="sidebar-toggle" class="fas fa-bars"></label>
+           <span class="p-3">
+                              <label for="sidebar-toggle" class="fas fa-bars"></label>
+
+            </span> 
         </div>
         <div class="sidebar-menu">
             <ul>
@@ -99,12 +104,18 @@
                 {{-- item 8 --}}
                 <li>
                     <a href="">
-                        <span class="fas fa-cog"></span>
-                        <span>Settings</span>
+                        <span class="fas fa-money-check-alt"></span>
+                        <span>Payments</span>
                     </a>
                 </li>
                
                 {{-- item 9--}}
+                <li>
+                    <a href="">
+                        <span class="fas fa-cog"></span>
+                        <span>Site Settings</span>
+                    </a>
+                </li>
                
             </ul>
         </div>
@@ -150,11 +161,14 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right p-3" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('users.edit-profile') }}">
+                                    <i class="fas fa-user-edit">{{ __('Edit Profile') }}</i>
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-arrow-to-left">{{ __('Logout') }}</i>
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

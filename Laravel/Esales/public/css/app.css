@@ -3,6 +3,7 @@
     --main-color: #008080;
     --color-dark: #1d2231;
     --text-grey: #8390a2;
+    --button-color:#ffa500;
 }
 * {
     font-family: "Poppins", sans-serif;
@@ -29,7 +30,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 50px;
     padding: 0rem 1rem;
 }
 .sidebar-menu {
